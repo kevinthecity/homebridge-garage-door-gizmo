@@ -77,12 +77,10 @@ export class DoorAccessory {
         this.platform.log.info(`Error while trying to send GET request to ${requestIpAndPath}`, e);
       }
 
-      setTimeout(() => {
-        // After door has opened successfully, wait 2 seconds to close it again
-        this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(1);
-        this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(0);
-        this.platform.log.info('Door close timeout');
-      }, 2000);
+      this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(1);
+      this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(0);
+      this.platform.log.info('Door closed');
+
     } else {
       // Close door
       this.platform.log.info('Closing door');
