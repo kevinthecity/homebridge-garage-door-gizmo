@@ -86,7 +86,7 @@ export class DoorAccessory {
       // Close door
       this.platform.log.info('Closing door');
       this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(1);
-      this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(0);
+      this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(1);
     }
   }
 }
