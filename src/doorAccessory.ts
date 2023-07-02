@@ -46,11 +46,14 @@ export class DoorAccessory {
         this.platform.log.info(`Error while trying to send GET request to ${requestIpAndPath}`, e);
       }
 
-      setTimeout(() => {
-        // Automatically turn off the switch after 2 seconds
-        this.service.getCharacteristic(this.platform.Characteristic.On).updateValue(false);
-        this.platform.log.info('Switch off timeout');
-      }, 2000);
+      this.service.getCharacteristic(this.platform.Characteristic.On).updateValue(false);
+      this.platform.log.info('Switch off timeout');
+
+      // setTimeout(() => {
+      //   // Automatically turn off the switch after 2 seconds
+      //   this.service.getCharacteristic(this.platform.Characteristic.On).updateValue(false);
+      //   this.platform.log.info('Switch off timeout');
+      // }, 2000);
     }
   }
 }
