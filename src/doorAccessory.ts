@@ -2,7 +2,7 @@ import { PlatformAccessory, PlatformConfig, Service } from 'homebridge';
 import { ExampleHomebridgePlatform } from './platform';
 import axios from 'axios';
 
-export class ButtonAccessory {
+export class DoorAccessory {
   private service: Service;
   private platformConfig: PlatformConfig;
 
