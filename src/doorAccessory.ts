@@ -44,7 +44,6 @@ export class DoorAccessory {
     return 1;
   }
 
-
   /**
    * Handle requests to get the current value of the "Lock Target State" characteristic
    */
@@ -58,39 +57,31 @@ export class DoorAccessory {
    * SECURED = 1;
    */
   async handleLockTargetStateSet(value) {
-    if (true) {
-      // Open door
-      this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(0);
-      this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(1);
+    // Ignore value since we always auto-reset to locked
 
-      // Call HTTP endpoint for opening door
-      const requestIpAndPath = `http://${this.platform.config.request_ip}/${this.platform.config.path}`;
-      this.platform.log.info(`Sending request to ${requestIpAndPath}...`);
-      try {
-        const response = await axios.get(requestIpAndPath);
-        if (response.status === 200) {
-          this.platform.log.info('Request was successful!');
-        }else{
-          this.platform.log.info('Wasn`t a 200 but also didn`t throw error');
-        }
-      } catch (e) {
-        this.platform.log.info(`Error while trying to send GET request to ${requestIpAndPath}`, e);
+    // Open door
+    this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(0);
+    this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(1);
+
+    // Call HTTP endpoint for opening door
+    const requestIpAndPath = `http://${this.platform.config.request_ip}/${this.platform.config.path}`;
+    this.platform.log.info(`Sending request to ${requestIpAndPath}...`);
+    try {
+      const response = await axios.get(requestIpAndPath);
+      if (response.status === 200) {
+        this.platform.log.info('Request was successful!');
+      }else{
+        this.platform.log.info('Wasn`t a 200 but also didn`t throw error');
       }
-
-      // this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(1);
-      // this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(1);
-
-      setTimeout(() => {
-        // After door has opened successfully, wait 2 seconds to close it again
-        this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(1);
-        this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(1);
-        this.platform.log.info('Door close timeout');
-      }, 2000);
-    } else {
-      // Close door
-      this.platform.log.info('Closing door');
-      this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(1);
-      this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(0);
+    } catch (e) {
+      this.platform.log.info(`Error while trying to send GET request to ${requestIpAndPath}`, e);
     }
+
+    setTimeout(() => {
+      // After door has opened successfully, wait 2 seconds to close it again
+      this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(1);
+      this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(1);
+      this.platform.log.info('Door close timeout');
+    }, 2000);
   }
 }
