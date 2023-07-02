@@ -56,8 +56,8 @@ export class ExampleHomebridgePlatform implements DynamicPlatformPlugin {
     this.log.info('Start discovering devices');
 
     const doorDeviceTemplate = {
-      uuid: 'tonis-door-device',
-      displayName: 'Tür',
+      uuid: 'garage-door-gizmo',
+      displayName: 'Garage Door Gizmo',
     };
 
     const uuid = this.api.hap.uuid.generate(doorDeviceTemplate.uuid);
