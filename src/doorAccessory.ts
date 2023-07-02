@@ -58,11 +58,10 @@ export class DoorAccessory {
    * SECURED = 1;
    */
   async handleLockTargetStateSet(value) {
-    this.platform.log.info(`target state ${value}`);
     if (value === 0) {
       // Open door
       this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(0);
-      // this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(1);
+      this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(1);
 
       // Call HTTP endpoint for opening door
       const requestIpAndPath = `http://${this.platform.config.request_ip}/${this.platform.config.path}`;
@@ -78,15 +77,17 @@ export class DoorAccessory {
         this.platform.log.info(`Error while trying to send GET request to ${requestIpAndPath}`, e);
       }
 
-      this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(1);
-      // this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(1);
-      this.platform.log.info('Door closed');
-
+      setTimeout(() => {
+        // After door has opened successfully, wait 2 seconds to close it again
+        this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(1);
+        this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(1);
+        this.platform.log.info('Door close timeout');
+      }, 4000);
     } else {
       // Close door
       this.platform.log.info('Closing door');
       this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(1);
-      // this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(1);
+      this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(0);
     }
   }
 }
