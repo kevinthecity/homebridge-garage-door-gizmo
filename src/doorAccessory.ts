@@ -58,6 +58,7 @@ export class DoorAccessory {
    * SECURED = 1;
    */
   async handleLockTargetStateSet(value) {
+    this.platform.log.info(`target state ${value}`);
     if (value === 0) {
       // Open door
       this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(0);
@@ -78,7 +79,7 @@ export class DoorAccessory {
       }
 
       this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(1);
-      this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(0);
+      this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(1);
       this.platform.log.info('Door closed');
 
     } else {
