@@ -62,7 +62,7 @@ export class DoorAccessory {
     if (value === 0) {
       // Open door
       this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(0);
-      this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(1);
+      // this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(1);
 
       // Call HTTP endpoint for opening door
       const requestIpAndPath = `http://${this.platform.config.request_ip}/${this.platform.config.path}`;
@@ -79,14 +79,14 @@ export class DoorAccessory {
       }
 
       this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(1);
-      this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(1);
+      // this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(1);
       this.platform.log.info('Door closed');
 
     } else {
       // Close door
       this.platform.log.info('Closing door');
       this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(1);
-      this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(1);
+      // this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(1);
     }
   }
 }
