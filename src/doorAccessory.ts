@@ -70,18 +70,22 @@ export class DoorAccessory {
         const response = await axios.get(requestIpAndPath);
         if (response.status === 200) {
           this.platform.log.info('Request was successful!');
+        }else{
+          this.platform.log.info('Wasn`t a 200 but also didn`t throw error');
         }
       } catch (e) {
-        this.platform.log.error(`Error while trying to send GET request to ${requestIpAndPath}`, e);
+        this.platform.log.info(`Error while trying to send GET request to ${requestIpAndPath}`, e);
       }
 
       setTimeout(() => {
         // After door has opened successfully, wait 2 seconds to close it again
         this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(1);
         this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(1);
+        this.platform.log.info('Door close timeout');
       }, 2000);
     } else {
       // Close door
+      this.platform.log.info('Closing door');
       this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(1);
       this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(0);
     }
