@@ -80,7 +80,7 @@ export class DoorAccessory {
       setTimeout(() => {
         // After door has opened successfully, wait 2 seconds to close it again
         this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(1);
-        this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(1);
+        this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(0);
         this.platform.log.info('Door close timeout');
       }, 2000);
     } else {
