@@ -26,7 +26,7 @@ export class DoorAccessory {
     //       "displayName":"Garage Door Gizmo"
     //     }
     // }
-    this.service.setCharacteristic(this.platform.Characteristic.Name, accessory.context.device.exampleDisplayName);
+    this.service.setCharacteristic(this.platform.Characteristic.Name, accessory.context.device.displayName);
 
     this.service.getCharacteristic(this.platform.Characteristic.On)
       .onGet(this.handleOnGet.bind(this))
