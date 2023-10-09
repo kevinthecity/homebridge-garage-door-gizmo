@@ -1,16 +1,16 @@
 {
   "private": false,
-  "displayName": "HTTP door opener",
-  "name": "homebridge-http-button",
+  "displayName": "GarageDoorGizmo",
+  "name": "homebridge-garage-door-gizmo",
   "version": "1.0.2",
   "description": "A small plugin to open the front door of an apartment building using an ESP32",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/toniweser/homebridge-http-door-opener.git"
+    "url": "git://github.com/kevinthecity/homebridge-http-door-opener.git"
   },
   "bugs": {
-    "url": "https://github.com/toniweser/homebridge-http-door-opener/issues"
+    "url": "https://github.com/kevinthecity/homebridge-http-door-opener/issues"
   },
   "engines": {
     "node": ">=14.18.1",
