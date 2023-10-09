@@ -1,5 +1,5 @@
 {
-  "pluginAlias": "HomebridgeHttpButton",
+  "pluginAlias": "GarageDoorGizmo",
   "pluginType": "platform",
   "singular": true,
   "schema": {
@@ -9,7 +9,7 @@
         "title": "Name",
         "type": "string",
         "required": true,
-        "default": "HTTP door opener"
+        "default": "Garage Door"
       },
       "request_ip": {
         "title": "Request IP",

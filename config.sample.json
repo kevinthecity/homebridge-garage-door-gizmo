@@ -1,10 +1,10 @@
 {
   "platforms": [
     {
-      "name": "HTTP Button",
+      "name": "Garage Door",
       "request_ip": "192.168.0.2",
       "path": "my-path",
-      "platform": "HomebridgeHttpButton"
+      "platform": "GarageDoorGizmo"
     }
   ]
 }
