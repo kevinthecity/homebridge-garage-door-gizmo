@@ -20,8 +20,8 @@ export class DoorAccessory {
     this.service = this.accessory.getService(this.platform.Service.Switch) ||
                    this.accessory.addService(this.platform.Service.Switch);
 
-    this.platform.log.info(`acccessory.context: ${accessory.context}`);
-    this.platform.log.info(`acccessory.context.device: ${accessory.context.device}`);
+    this.platform.log.info(`acccessory.context: ${JSON.stringify(accessory.context)}`);
+    this.platform.log.info(`acccessory.context.device: ${JSON.stringify(accessory.context.device)}`);
     this.service.setCharacteristic(this.platform.Characteristic.Name, accessory.context.device.exampleDisplayName);
 
     this.service.getCharacteristic(this.platform.Characteristic.On)
