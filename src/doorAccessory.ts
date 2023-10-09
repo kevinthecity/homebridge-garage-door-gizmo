@@ -13,15 +13,19 @@ export class DoorAccessory {
     this.platformConfig = this.platform.config;
 
     this.accessory.getService(this.platform.Service.AccessoryInformation)!
-      .setCharacteristic(this.platform.Characteristic.Manufacturer, 'Default-Manufacturer')
-      .setCharacteristic(this.platform.Characteristic.Model, 'Default-Model')
-      .setCharacteristic(this.platform.Characteristic.SerialNumber, 'Default-Serial');
+      .setCharacteristic(this.platform.Characteristic.Manufacturer, 'kevinthecity')
+      .setCharacteristic(this.platform.Characteristic.Model, 'Garage-Door-Gizmo-Alpha')
+      .setCharacteristic(this.platform.Characteristic.SerialNumber, '001');
 
     this.service = this.accessory.getService(this.platform.Service.Switch) ||
                    this.accessory.addService(this.platform.Service.Switch);
-
-    this.platform.log.info(`acccessory.context: ${JSON.stringify(accessory.context)}`);
-    this.platform.log.info(`acccessory.context.device: ${JSON.stringify(accessory.context.device)}`);
+    // {
+    //   "device":
+    //     {
+    //       "uuid":"garage-door-gizmo",
+    //       "displayName":"Garage Door Gizmo"
+    //     }
+    // }
     this.service.setCharacteristic(this.platform.Characteristic.Name, accessory.context.device.exampleDisplayName);
 
     this.service.getCharacteristic(this.platform.Characteristic.On)
