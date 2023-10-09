@@ -25,10 +25,7 @@
   },
   "keywords": [
     "homebridge-plugin",
-    "door-opener",
-    "ESP-32",
-    "door",
-    "HTTP"
+    "garage-door"
   ],
   "dependencies": {
     "axios": "^0.27.2"
